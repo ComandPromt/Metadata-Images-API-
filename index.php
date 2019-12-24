@@ -27,23 +27,23 @@ session_start();
 	
 		$file_name=$_FILES[uploadedfile][name];
 	
-		$add="uploads/$file_name";
+		$add="$file_name";
 	
 		if(move_uploaded_file ($_FILES[uploadedfile][tmp_name], $add)){
 			
 			$extension=substr($file_name,-3);
 
-			rename($add,'uploads/test.'.$extension);
+			rename($add,'test.'.$extension);
 
-            chmod('uploads/test.'.$extension,0777);
+            chmod('test.'.$extension,0777);
         
 			switch($extension){
 			
                 case "png":
 
-                    png_a_jpg('uploads/test.png');
+                    png_a_jpg('test.png');
                     
-                    unlink('uploads/test.png');
+                    unlink('test.png');
 
                 break;
                 
@@ -51,11 +51,11 @@ session_start();
                 break;
                 
                 default:
-                    unlink('uploads/test.'.$extension);
+                    unlink('test.'.$extension);
                 break;
             }
 
-            $url='uploads/test.jpg';
+            $url='test.jpg';
 		
 			if(file_exists($url)){
                
