@@ -27,31 +27,37 @@ session_start();
 	
 		$file_name=$_FILES[uploadedfile][name];
 	
-		$add="$file_name";
+		$add="uploads/$file_name";
 	
 		if(move_uploaded_file ($_FILES[uploadedfile][tmp_name], $add)){
 			
 			$extension=substr($file_name,-3);
 
-			rename($add,'test.'.$extension);
+			rename($add,'uploads/test.'.$extension);
 
-            chmod('test.'.$extension,0777);
+            chmod('uploads/test.'.$extension,0777);
         
 			switch($extension){
 			
                 case "png":
-                    png_a_jpg('test.png');
+
+                    png_a_jpg('uploads/test.png');
+                    
+                    unlink('uploads/test.png');
+
                 break;
                 
                 case "jpg":
                 break;
                 
                 default:
-                    unlink('test.'.$extension);
+                    unlink('uploads/test.'.$extension);
                 break;
             }
 
-            $url='test.jpg';
+            $url='uploads/test.jpg';
+		
+			if(file_exists($url)){
                
                 $_SESSION['imagen']=array();
 
@@ -114,9 +120,18 @@ session_start();
                     $_SESSION['imagen'][]=$v_exif['IFD0']['Subject'];
                     $_SESSION['tipo'][]='Subject';
                 }
-          
+                
+                unlink($url);
+           
 			    echo '<script>location.href="resultado.php?respuesta=ok";</script>';
-		
+					
+			}
+	
+			else{
+               
+				echo '<script>location.href="resultado.php";</script>';
+			}
+			
 		}
 	
 		else{
