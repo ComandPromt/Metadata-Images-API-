@@ -114,12 +114,9 @@ session_start();
                     $_SESSION['imagen'][]=$v_exif['IFD0']['Subject'];
                     $_SESSION['tipo'][]='Subject';
                 }
-                
           
 			    echo '<script>location.href="resultado.php?respuesta=ok";</script>';
-					
-			
-			
+		
 		}
 	
 		else{
