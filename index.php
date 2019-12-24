@@ -121,8 +121,7 @@ session_start();
                     $_SESSION['tipo'][]='Subject';
                 }
                 
-                unlink($url);
-           
+          
 			    echo '<script>location.href="resultado.php?respuesta=ok";</script>';
 					
 			}
