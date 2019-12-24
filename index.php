@@ -40,11 +40,7 @@ session_start();
 			switch($extension){
 			
                 case "png":
-
                     png_a_jpg('test.png');
-                    
-                    unlink('test.png');
-
                 break;
                 
                 case "jpg":
@@ -56,8 +52,6 @@ session_start();
             }
 
             $url='test.jpg';
-		
-			if(file_exists($url)){
                
                 $_SESSION['imagen']=array();
 
@@ -124,12 +118,7 @@ session_start();
           
 			    echo '<script>location.href="resultado.php?respuesta=ok";</script>';
 					
-			}
-	
-			else{
-               
-				echo '<script>location.href="resultado.php";</script>';
-			}
+			
 			
 		}
 	
